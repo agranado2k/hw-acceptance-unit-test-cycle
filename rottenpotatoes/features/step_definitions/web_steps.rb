@@ -31,6 +31,12 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+Given(/^the following movies exist:$/) do |movies_table|
+  movies_table.hashes.each do |movie|
+      Movie.create!(movie)
+  end
+end
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }
